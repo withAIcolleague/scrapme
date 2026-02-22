@@ -203,6 +203,12 @@ body {
   transform: translateY(-1px);
 }
 
+.waitlist-submit:disabled,
+.waitlist-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .waitlist-message {
   grid-column: 1 / -1;
   color: var(--color-paper-soft);

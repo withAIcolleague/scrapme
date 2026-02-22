@@ -5,8 +5,9 @@ import { FormEvent, useState } from "react";
 export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!email.trim()) {
@@ -14,8 +15,32 @@ export function WaitlistForm() {
       return;
     }
 
-    setMessage("UI connected. Supabase save will be added in L3/L4.");
-    setEmail("");
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = (await response.json()) as { ok?: boolean; message?: string };
+
+      if (!response.ok || !data.ok) {
+        setMessage(data.message ?? "Failed to submit.");
+        return;
+      }
+
+      setMessage("You're on the list. Supabase storage will be wired in L4.");
+      setEmail("");
+    } catch {
+      setMessage("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -31,9 +56,10 @@ export function WaitlistForm() {
         placeholder="you@example.com"
         autoComplete="email"
         className="waitlist-input"
+        disabled={isSubmitting}
       />
-      <button type="submit" className="waitlist-submit">
-        Join
+      <button type="submit" className="waitlist-submit" disabled={isSubmitting}>
+        {isSubmitting ? "Joining..." : "Join"}
       </button>
       {message ? (
         <p className="waitlist-message" aria-live="polite">
