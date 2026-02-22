@@ -165,6 +165,52 @@ body {
   color: rgba(248, 250, 252, 0.9);
 }
 
+.waitlist-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+}
+
+.waitlist-input {
+  border: 1px solid rgba(248, 250, 252, 0.22);
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--color-paper);
+  padding: 0.7rem 0.95rem;
+  font-size: 0.95rem;
+}
+
+.waitlist-input::placeholder {
+  color: rgba(248, 250, 252, 0.45);
+}
+
+.waitlist-input:focus {
+  outline: none;
+  border-color: rgba(124, 226, 195, 0.95);
+  box-shadow: 0 0 0 2px rgba(124, 226, 195, 0.2);
+}
+
+.waitlist-submit {
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--color-coral), #ff9e80);
+  color: #1e293b;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+.waitlist-submit:hover {
+  transform: translateY(-1px);
+}
+
+.waitlist-message {
+  grid-column: 1 / -1;
+  color: var(--color-paper-soft);
+  font-size: 0.85rem;
+  text-align: left;
+  padding-inline: 0.25rem;
+}
+
 .fade-in-up {
   animation: fadeInUp 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }

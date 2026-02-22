@@ -1,8 +1,11 @@
+import { WaitlistForm } from "@/components/waitlist-form";
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--color-ink)] text-[var(--color-paper)]">
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
+
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-10 sm:px-10 lg:px-16">
         <header className="fade-in-up flex items-center justify-between">
           <p className="font-mono text-xs tracking-[0.28em] text-[var(--color-coral)]">
@@ -19,11 +22,11 @@ export default function Home() {
               Click, Collect, Compose.
             </h1>
             <p className="max-w-xl text-base leading-7 text-[color:var(--color-paper-soft)] sm:text-lg">
-              웹에서 발견한 장면들을 한 장의 캔버스에 붙이고, 회전하고,
-              겹치고, 감정까지 메모해 나만의 디지털 스크랩북을 만드세요.
+              Collect images from the web, place them on one board, rotate,
+              resize, layer, and make your personal scrapbook in minutes.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <a className="cta-fill" href="#preview">
+              <a className="cta-fill" href="/editor">
                 Preview Board
               </a>
               <a className="cta-text" href="#features">
@@ -50,23 +53,26 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="fade-in-up fade-delay-3 grid gap-4 sm:grid-cols-3">
+        <section
+          id="features"
+          className="fade-in-up fade-delay-3 grid gap-4 sm:grid-cols-3"
+        >
           <article className="feature-card">
             <p className="feature-title">Freeform Canvas</p>
             <p className="feature-copy">
-              이미지를 격자 없이 자유롭게 배치하고 레이어 순서를 직관적으로 정리.
+              Place images without a fixed grid and control layer order quickly.
             </p>
           </article>
           <article className="feature-card">
             <p className="feature-title">Style Playground</p>
             <p className="feature-copy">
-              배경, 스티커, 타이포를 조합해 페이지마다 완전히 다른 분위기 제작.
+              Mix backgrounds, stickers, and typography to shape each page mood.
             </p>
           </article>
           <article className="feature-card">
             <p className="feature-title">Private Archive</p>
             <p className="feature-copy">
-              개인 보드 단위 저장으로 기억을 조용히 쌓아두는 나만의 아카이브.
+              Save personal boards as your own quiet archive of memories.
             </p>
           </article>
         </section>
@@ -75,15 +81,21 @@ export default function Home() {
           <p>From random web images to a story-driven board in minutes.</p>
         </section>
 
-        <section id="waitlist" className="fade-in-up fade-delay-4 rounded-3xl border border-white/20 bg-white/5 p-8 text-center">
+        <section
+          id="waitlist"
+          className="fade-in-up fade-delay-4 rounded-3xl border border-white/20 bg-white/5 p-8 text-center"
+        >
           <p className="text-sm uppercase tracking-[0.2em] text-[var(--color-coral)]">
             Early Access
           </p>
-          <h2 className="mt-3 text-3xl font-semibold">Scrapme를 가장 먼저 써보세요</h2>
+          <h2 className="mt-3 text-3xl font-semibold">Be first to try Scrapme</h2>
           <p className="mx-auto mt-3 max-w-xl text-[var(--color-paper-soft)]">
-            지금은 랜딩부터 시작하고, 다음 단계에서 실제 편집 기능을 연결할
-            예정입니다.
+            Enter your email to join early access. Supabase save will be wired
+            in the next step.
           </p>
+          <div className="mx-auto mt-6 max-w-md">
+            <WaitlistForm />
+          </div>
         </section>
       </main>
     </div>
