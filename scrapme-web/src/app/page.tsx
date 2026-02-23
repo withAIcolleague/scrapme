@@ -26,7 +26,7 @@ export default function Home() {
               resize, layer, and make your personal scrapbook in minutes.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <a className="cta-fill" href="/editor">
+              <a className="cta-fill" href="/enter?next=/editor">
                 Preview Board
               </a>
               <a className="cta-text" href="#features">
