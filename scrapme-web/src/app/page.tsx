@@ -90,8 +90,8 @@ export default function Home() {
           </p>
           <h2 className="mt-3 text-3xl font-semibold">Be first to try Scrapme</h2>
           <p className="mx-auto mt-3 max-w-xl text-[var(--color-paper-soft)]">
-            Enter your email to join early access. Supabase save will be wired
-            in the next step.
+            Enter your email to join early access. We will notify you when the
+            first editor build is ready.
           </p>
           <div className="mx-auto mt-6 max-w-md">
             <WaitlistForm />

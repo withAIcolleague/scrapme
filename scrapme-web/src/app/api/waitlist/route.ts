@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
 type WaitlistPayload = {
   email?: string;
@@ -27,8 +28,41 @@ export async function POST(request: Request) {
     );
   }
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const tableName = process.env.SUPABASE_WAITLIST_TABLE ?? "waitlist_emails";
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    return NextResponse.json(
+      { ok: false, message: "Missing Supabase environment variables." },
+      { status: 500 }
+    );
+  }
+
+  const supabase = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false },
+  });
+
+  const { error } = await supabase
+    .from(tableName)
+    .insert([{ email, source: "landing" }]);
+
+  if (error) {
+    if (error.code === "23505") {
+      return NextResponse.json(
+        { ok: false, message: "This email is already registered." },
+        { status: 409 }
+      );
+    }
+
+    return NextResponse.json(
+      { ok: false, message: "Failed to save your email." },
+      { status: 500 }
+    );
+  }
+
   return NextResponse.json(
-    { ok: true, message: "Accepted. Storage will be connected in L4." },
+    { ok: true, message: "Saved to waitlist." },
     { status: 201 }
   );
 }

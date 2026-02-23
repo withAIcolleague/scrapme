@@ -34,7 +34,7 @@ export function WaitlistForm() {
         return;
       }
 
-      setMessage("You're on the list. Supabase storage will be wired in L4.");
+      setMessage(data.message ?? "You're on the waitlist.");
       setEmail("");
     } catch {
       setMessage("Network error. Please try again.");
